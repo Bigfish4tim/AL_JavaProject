@@ -52,9 +52,11 @@ public class AL_25632 {
         for (Integer integer : ytlist) {
             if (yjlist.contains(integer)) {
                 same.add(integer);
-                ytlist.remove(integer);
-                yjlist.remove(integer);
             }
+        }
+        for (Integer integer : same) {
+            ytlist.remove(integer);
+            yjlist.remove(integer);
         }
 
         String ans;
