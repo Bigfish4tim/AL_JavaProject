@@ -3,14 +3,20 @@ import java.util.*;
 public class AL_25635 {
     static int max = 0;
 
-    static void dfs(int nodeIndex, int[][] graph, int[] visit) {
+    static int[] visit;
+
+    static int[][] graph;
+
+    static void dfs(int nodeIndex, int[][] graph, int[] visit, int visitcount) {
         visit[nodeIndex]--;
 
         for(int i=0; i< graph[nodeIndex].length; i++) {
-            if(visit[i] != 0) {
-                dfs(i, graph, visit);
-                max++;
-                System.out.println(max);
+            if(visit[graph[nodeIndex][i]] != 0) {
+                visitcount++;
+                dfs(graph[nodeIndex][i], graph, visit, visitcount);
+            }
+            if(visitcount > max) {
+                max = visitcount;
             }
         }
     }
@@ -20,13 +26,13 @@ public class AL_25635 {
 
         int count = sc.nextInt();
 
-        int[] visit = new int[count];
+        visit = new int[count];
 
         for(int i=0; i<count; i++) {
             visit[i] = sc.nextInt();
         }
 
-        int[][] graph = new int[count][count-1];
+        graph = new int[count][count-1];
 
         for(int i=0; i<count; i++) {
             int jcount = 0;
@@ -38,6 +44,6 @@ public class AL_25635 {
             }
         }
 
-        dfs(0, graph, visit);
+        dfs(0, graph, visit, 1);
     }
 }
