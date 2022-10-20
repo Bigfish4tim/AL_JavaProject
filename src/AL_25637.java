@@ -190,7 +190,6 @@ public class AL_25637 {
             System.out.println(0);
         } else {
             int sumcount = 0;
-            while ()
         }
 
 
