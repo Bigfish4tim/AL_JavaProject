@@ -15,16 +15,20 @@ public class AL_25638 {
         for(int i=0; i<graph[nodeIndex-1].length; i++) {
             if(!visit[i] && graph[nodeIndex-1][i]==1) {
                 boolean[] visitClone = visit.clone();
-                if(i == u-1) {
-                    uTrig = true;
-                }
-                subTrig = uTrig;
+//                if(i == u-1) {
+//                    uTrig = true;
+//                }
+//                subTrig = uTrig;
                 if(uTrig) {
                     if(colors[start-1] != colors[i]) {
                         sum++;
                     }
                 }
-                qDFS(start, i+1, graph, visitClone, u, i == u - 1);
+                if(uTrig) {
+                    qDFS(start, i+1, graph, visitClone, u, true);
+                } else {
+                    qDFS(start, i+1, graph, visitClone, u, i == u - 1);
+                }
 //                qDFS(start, i+1, graph, visitClone, u, subTrig);
             }
         }
@@ -77,7 +81,7 @@ public class AL_25638 {
         map[2][4] = 1;
         map[4][2] = 1;
 
-        qDFS(1,1, map, visit,2,false);
+        qDFS(1,1, map, visit,3,false);
 
         System.out.println(sum);
     }
