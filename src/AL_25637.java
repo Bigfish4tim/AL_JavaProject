@@ -150,57 +150,63 @@ public class AL_25637 {
         public void printAll() {
 //      리스트를 출력
         }
+
+        public boolean isCorrect() {
+            int x = 1;
+
+            for(int i=0; i<size; i++) {
+                int temp = (int) last.getData();
+
+                x = x * temp;
+            }
+
+            return x == 1;
+        }
     }
+
+    public void cycleFunc(merryList<Integer> list) {
+        Node<Integer> temp = list.last;
+        while (!list.isCorrect()) {
+            moveFunc(temp);
+
+            temp = temp.rlink;
+        }
+    }
+
+    public void moveFunc(Node<Integer> last) {
+        if(last.rlink.getData() == 0 && last.llink.getData() != 0) {
+            last.pCount--;
+            last.rlink.pCount++;
+            sum++;
+        } else if(last.rlink.getData() != 0 && last.llink.getData() == 0) {
+            last.pCount--;
+            last.llink.pCount++;
+            sum++;
+        }
+    }
+
+    int sum = 0;
 
     public static void main(String[] args) {
         merryList<Integer> list = new merryList<>();
-
-        int ones = 1;
 
         Scanner sc = new Scanner(System.in);
 
         int count = sc.nextInt();
 
-        boolean trig = false;
-
         int[] temps = new int[count];
 
         for(int i=0; i<count; i++) {
-            int temp = sc.nextInt();
-            temps[i] = temp;
-            ones = ones * temp;
+            list.add(sc.nextInt());
         }
-
-        int odd = 0;
-        int even = 0;
-
-        for(int i=0; i<count; i++) {
-            if(i%2 == 1) {
-                odd = odd + temps[i];
-            } else {
-                even = even + temps[i];
-            }
-        }
-
-        if(odd * even == 0) {
-            trig = true;
-        }
-
-        if(ones == 1) {
-            System.out.println(0);
-        } else {
-            int sumcount = 0;
-        }
-
-
 
         //
 
-        // 1. 해당 값이 1 이하인 경우 제외
-        // 2. 해당 값의 양 옆 노드의 값이 0인 경우 제외
-        // 3. 해당 값의 양 옆 노드의 값이 0이 아닌 경우
-        // 4. 해당 값의 양 옆 노드 중 하나만 0인 경우
-
+        // 1. 단면
+        // 2. 양면
+        // 2-1. 2 이상의 양면
+        // 2-2. 2인 양면
+        // 3. 양면이 1 이상
 
         //
     }
